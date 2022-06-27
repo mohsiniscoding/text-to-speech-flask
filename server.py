@@ -1,4 +1,4 @@
-API_TOKEN = ""
+API_TOKEN = "0000-0000-0000-0000"
 
 import logging
 import sys
