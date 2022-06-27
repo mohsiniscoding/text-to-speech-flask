@@ -11,7 +11,10 @@ from flask import Flask, jsonify, send_file
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-# tts = TTS()
+@app.route("/", methods=['GET'])
+def index():
+    return 'Home sweet home!'
+    
 @app.route("/convert/<api_token>/<text>", methods=['GET'])
 def convert(api_token, text):
 
