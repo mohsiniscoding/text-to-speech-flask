@@ -14,6 +14,10 @@ app.url_map.strict_slashes = False
 @app.route("/", methods=['GET'])
 def index():
     return 'Home sweet home!'
+
+@app.route("/download/<filename>", methods=['GET'])
+def download(filename):
+    return send_file(file_name, as_attachment=True)
     
 @app.route("/convert/<api_token>/<text>", methods=['GET'])
 def convert(api_token, text):
@@ -32,8 +36,7 @@ def convert(api_token, text):
 
     ## conversion ends
 
-    ## send audio file
-    return send_file(file_name, as_attachment=True)
+    return redirect('download', filename=file_name)
 
   
 
