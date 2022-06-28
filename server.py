@@ -34,8 +34,8 @@ def convert(api_token, text):
     tts.generate(text)
     file_name = tts.parse() + ".wav"
     ## conversion ends
-
-    return redirect(url_for('download', filename=file_name))
+    download_url = url_for('download', filename=file_name)
+    return "<a href='{}'>Click Here To Download</a>".format(download_url)
 
   
 
