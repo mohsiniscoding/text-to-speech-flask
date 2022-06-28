@@ -22,8 +22,8 @@ def download(filename):
 
 tts = TTS()
 
-@app.route("/convert/<api_token>/<text>", methods=['GET'])
-def convert(api_token, text):
+@app.route("/convert/<api_token>/<voice_name>/<location>/<text>", methods=['GET'])
+def convert(api_token, voice_name, location, text):
 
     ## token check
     if api_token != API_TOKEN:
@@ -31,6 +31,18 @@ def convert(api_token, text):
             'error': 'Wrong API Token!'
         }), 400
     
+    ## location check
+    if lower(str(location)) != "new-york":
+        return jsonify({
+            'error': 'Invalid location!'
+        }), 400
+
+    ## voice_name check
+    if lower(str(voice_name)) != "gabby":
+        return jsonify({
+            'error': 'Invalid voice name!'
+        }), 400
+
     ## conversion
 
     
