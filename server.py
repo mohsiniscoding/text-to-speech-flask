@@ -32,15 +32,15 @@ def convert(api_token, voice_name, location, text):
         }), 400
     
     ## location check
-    if lower(str(location)) != "new-york":
+    if str(location).lower() != "new-york":
         return jsonify({
             'error': 'Invalid location!'
         }), 400
 
-    ## voice_name check
-    if lower(str(voice_name)) != "gabby":
+    ## voice check
+    if str(voice_name).lower() != "gabby":
         return jsonify({
-            'error': 'Invalid voice name!'
+            'error': 'Invalid location!'
         }), 400
 
     ## conversion
