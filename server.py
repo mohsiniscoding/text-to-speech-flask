@@ -17,7 +17,7 @@ def index():
 
 @app.route("/download/<filename>", methods=['GET'])
 def download(filename):
-    return send_file(file_name, as_attachment=True)
+    return send_file(filename, as_attachment=True)
     
 @app.route("/convert/<api_token>/<text>", methods=['GET'])
 def convert(api_token, text):
