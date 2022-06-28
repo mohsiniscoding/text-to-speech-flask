@@ -6,7 +6,7 @@ import sys
 logger = logging.getLogger()
 import json
 from ruth_tts_transformer.api import TTS
-from flask import Flask, jsonify, send_file
+from flask import Flask, jsonify, send_file, redirect, url_for
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -33,10 +33,9 @@ def convert(api_token, text):
     tts = TTS()
     tts.generate(text)
     file_name = tts.parse() + ".wav"
-
     ## conversion ends
 
-    return redirect('download', filename=file_name)
+    return redirect(url_for('download', filename=file_name))
 
   
 
