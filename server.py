@@ -19,6 +19,9 @@ def index():
 def download(filename):
     return send_file(filename, as_attachment=True)
     
+
+tts = TTS()
+
 @app.route("/convert/<api_token>/<text>", methods=['GET'])
 def convert(api_token, text):
 
@@ -30,7 +33,7 @@ def convert(api_token, text):
     
     ## conversion
 
-    tts = TTS()
+    
     tts.generate(text)
     file_name = tts.parse() + ".wav"
     ## conversion ends
