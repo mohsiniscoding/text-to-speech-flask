@@ -20,7 +20,12 @@ def index():
 @app.route("/download/<filename>", methods=['GET'])
 def download(filename):
     return send_file(filename, as_attachment=True)
-    
+
+def delete_old_file(current_file):
+    files = [f for f in os.listdir('.') if os.path.isfile(f)]
+    for f in files:
+        if f.endswith('.wav') and f != current_file:
+            os.remove(f)
 
 tts = TTS()
 
@@ -64,6 +69,11 @@ def convert(api_token):
     tts.generate(text)
     file_name = tts.parse() + ".wav"
     ## conversion ends
+
+    ## delete previous files
+    delete_old_file(file_name)
+
+    ## send download link
     download_url = url_for('download', filename=file_name)
     return "<a href='{}'>Click Here To Download</a>".format(download_url)
 
@@ -117,6 +127,11 @@ def convert_post():
     tts.generate(text)
     file_name = tts.parse() + ".wav"
     ## conversion ends
+
+    ## delete previous files
+    delete_old_file(file_name)
+
+    ## send download link
     download_url = url_for('download', filename=file_name)
     return "<a href='{}'>Click Here To Download</a>".format(download_url)
 
