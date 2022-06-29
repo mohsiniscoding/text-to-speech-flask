@@ -1,3 +1,4 @@
 .models/
 .env/
 .ruth-tts-files/
+.env
