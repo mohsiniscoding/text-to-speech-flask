@@ -39,8 +39,8 @@ def convert(api_token):
             'error': 'Wrong API Token!'
         }), 400
     
-    voice_name = request.args.get('voice_name')
     ## voice check
+    voice_name = request.args.get('voice_name')
     if not voice_name:
         return jsonify({
             'error': 'voice_name parameter is required!'
@@ -52,8 +52,8 @@ def convert(api_token):
         }), 400
 
 
-    location = request.args.get('location')
     ## location check
+    location = request.args.get('location')
     if not location:
         return jsonify({
             'error': 'location parameter is required!'
@@ -63,6 +63,14 @@ def convert(api_token):
         return jsonify({
             'error': 'Invalid location parameter!'
         }), 400
+    
+    ## text check
+    text = request.args.get('text')
+    if not text:
+        return jsonify({
+            'error': 'text parameter is required!'
+        }), 400
+        
 
 
     ## conversion
@@ -121,6 +129,13 @@ def convert_post():
     if str(body['location']).lower() != 'new-york':
         return jsonify({
             'error': 'wrong location.'
+        }), 400
+
+    ## text check
+    text = request.args.get('text')
+    if not text:
+        return jsonify({
+            'error': 'text parameter is required!'
         }), 400
 
     ## conversion
