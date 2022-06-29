@@ -132,7 +132,7 @@ def convert_post():
         }), 400
 
     ## text check
-    text = request.args.get('text')
+    text = body['text']
     if not text:
         return jsonify({
             'error': 'text parameter is required!'
